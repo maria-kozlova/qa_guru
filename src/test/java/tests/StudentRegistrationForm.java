@@ -35,12 +35,10 @@ public class StudentRegistrationForm {
         $("#subjectsInput").setValue("English");
         $("#subjectsInput").pressEnter();
         $("[for='hobbies-checkbox-3']").click();
-        $("#uploadPicture").sendKeys("/Users/maria.kozlova/IdeaProjects/qa_guru/Screen Shot 2021-03-02 at 8.32.20 PM.png");
+        $("#uploadPicture").uploadFromClasspath("picture.png");
         $("#currentAddress").setValue("123 My Address Street");
-        $("#react-select-3-input").setValue("Haryana");
-        $("#react-select-3-input").pressEnter();
-        $("#react-select-4-input").setValue("Karnal");
-        $("#react-select-4-input").pressEnter();
+        $("#react-select-3-input").setValue("Haryana").pressEnter();
+        $("#react-select-4-input").setValue("Karnal").pressEnter();
         $("#submit").click();
 
         $(".table-responsive").shouldHave(text("Maria Kozlova"))
@@ -50,7 +48,7 @@ public class StudentRegistrationForm {
                 .shouldHave(text("26 August,1996"))
                 .shouldHave(text("English"))
                 .shouldHave(text("Music"))
-                .shouldHave(text("Screen Shot 2021-03-02 at 8.32.20 PM.png"))
+                .shouldHave(text("picture.png"))
                 .shouldHave(text("123 My Address Street"))
                 .shouldHave(text("Haryana Karnal"));
 
