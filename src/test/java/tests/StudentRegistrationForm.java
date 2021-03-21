@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.Select;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,17 +24,14 @@ public class StudentRegistrationForm {
         $("#firstName").setValue("Maria");
         $("#lastName").setValue("Kozlova");
         $("#userEmail").setValue("myemail@mail.com");
-        $("[for='gender-radio-2']").click();
+        $(byText("Female")).click();
         $("#userNumber").setValue("8582345674");
         $("#dateOfBirthInput").click();
 
-        Select months = new Select($(".react-datepicker__month-select"));
-        months.selectByVisibleText("August");
-        Select year = new Select($(".react-datepicker__year-select"));
-        year.selectByVisibleText("1996");
-        $("[aria-label='Choose Monday, August 26th, 1996']").click();
-        $("#subjectsInput").setValue("English");
-        $("#subjectsInput").pressEnter();
+        $(".react-datepicker__month-select").selectOptionContainingText("August");
+        $(".react-datepicker__year-select").selectOptionContainingText("1996");
+        $(".react-datepicker__day--026").click();
+        $("#subjectsInput").setValue("English").pressEnter();
         $("[for='hobbies-checkbox-3']").click();
         $("#uploadPicture").uploadFromClasspath("picture.png");
         $("#currentAddress").setValue("123 My Address Street");
@@ -41,16 +39,11 @@ public class StudentRegistrationForm {
         $("#react-select-4-input").setValue("Karnal").pressEnter();
         $("#submit").click();
 
-        $(".table-responsive").shouldHave(text("Maria Kozlova"))
-                .shouldHave(text("myemail@mail.com"))
-                .shouldHave(text("Female"))
-                .shouldHave(text("8582345674"))
-                .shouldHave(text("26 August,1996"))
-                .shouldHave(text("English"))
-                .shouldHave(text("Music"))
-                .shouldHave(text("picture.png"))
-                .shouldHave(text("123 My Address Street"))
-                .shouldHave(text("Haryana Karnal"));
+        $(".table-responsive").shouldHave(text("Maria Kozlova"), text("myemail@mail.com"),
+                text("Female"), text("8582345674"),
+                text("26 August,1996"), text("English"),
+                text("Music"), text("picture.png"),
+                text("123 My Address Street"), text("Haryana Karnal"));
 
     }
 
