@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,8 +19,8 @@ public class SelenideDragAndDropTest {
     void dragAndDropExerciseWithSelenide() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
 
-// doesn't work with actions for me for some reason
-//        Selenide.actions().dragAndDrop($("#column-a"), $("#column-b")).release().perform();
         $("#column-a").dragAndDropTo("#column-b");
+        $("#column-a").shouldHave(Condition.text("B"));
+        $("#column-b").shouldHave(Condition.text("A"));
     }
 }

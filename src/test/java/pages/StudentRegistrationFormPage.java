@@ -1,4 +1,4 @@
-package PageObject;
+package pages;
 import com.github.javafaker.Faker;
 
 import static com.codeborne.selenide.Condition.text;
@@ -55,7 +55,7 @@ public class StudentRegistrationFormPage {
         $(".react-datepicker__day--0"+date).click();
     }
 
-    public void VerifyData() {
+    public void verifyData() {
         System.out.println("VERIFY ----" +firstName);
         $(".table-responsive").shouldHave(text(firstName + " "+ lastName), text(email),
                 text(gender), text(phoneNumber),
